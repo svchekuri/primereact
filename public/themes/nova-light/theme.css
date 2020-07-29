@@ -4208,3 +4208,18 @@ body .p-fluid .p-inplace.p-inplace-closable .p-inplace-content > :first-child {
 }
 
 /* Add your customizations of theme here */
+/* sdc change */
+body .p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+  padding: 2px 8px;
+}
+
+body .p-tooltip {
+  max-width: 30em;
+}
+
+body .p-tooltip .p-tooltip-text {
+  background-color: #eef2f8;
+  color: #000;
+  font-size: 13px;
+  white-space: normal; /* component level, white-space is not getting wrapped */
+}

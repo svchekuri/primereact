@@ -1,0 +1,20 @@
+.icon_ns {
+    background-image: url('/showcase/demo/images/sdc/icon_ns.png');
+    background-repeat: no-repeat;
+    padding-left: 18px;
+    background-position: left;
+}
+
+.icon_shipping_label {
+    background-image: url('/showcase/demo/images/sdc/icon_shipping_label.png');
+    background-repeat: no-repeat;
+    padding-left: 18px;
+    background-position: left;
+}
+
+.icon_roll {
+    background-image: url('/showcase/demo/images/sdc/icon_roll.png');
+    background-repeat: no-repeat;
+    padding-left: 18px;
+    background-position: left;
+}

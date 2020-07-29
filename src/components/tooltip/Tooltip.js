@@ -52,7 +52,8 @@ export class Tooltip extends Component {
         onBeforeShow: null,
         onBeforeHide: null,
         onShow: null,
-        onHide: null
+        onHide: null,
+        showArrow: false
     }
 
     static propTypes = {
@@ -77,7 +78,8 @@ export class Tooltip extends Component {
         onBeforeUpdated: PropTypes.func,
         onShow: PropTypes.func,
         onHide: PropTypes.func,
-        onUpdated: PropTypes.func
+        onUpdated: PropTypes.func,
+        showArrow: PropTypes.bool,
     }
 
     constructor(props) {
@@ -92,6 +94,8 @@ export class Tooltip extends Component {
 
         this.show = this.show.bind(this);
         this.hide = this.hide.bind(this);
+
+        this.showArrow = this.props.showArrow || false;
     }
 
     getEvents() {
@@ -118,8 +122,7 @@ export class Tooltip extends Component {
             }
 
             if (content) {
-                this.tooltipTextEl.innerHTML = ''; // remove children
-                this.tooltipTextEl.appendChild(document.createTextNode(content));
+                this.tooltipTextEl.innerHTML = content;
                 callback();
             }
             else if (this.props.children) {
@@ -344,9 +347,11 @@ export class Tooltip extends Component {
             [`p-tooltip-${this.state.position}`]: true
         }, this.props.className);
 
+        const arrowTemplate = this.showArrow ? <div className="p-tooltip-arrow"></div> : '';
+
         return (
             <div ref={(el) => this.containerEl = el} className={tooltipClass} style={this.props.style}>
-                <div className="p-tooltip-arrow"></div>
+                {arrowTemplate}
                 <div ref={(el) => this.tooltipTextEl = el} className="p-tooltip-text"></div>
             </div>
         );

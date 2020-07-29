@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import {tip} from "../tooltip/Tooltip";
+
 export class DropdownItem extends Component {
 
     static defaultProps = {
@@ -28,6 +30,21 @@ export class DropdownItem extends Component {
         this.onClick = this.onClick.bind(this);
     }
 
+    componentDidMount() {
+        if (this.props.option.tooltip) {
+            this.renderTooltip();
+        }
+    }
+
+    renderTooltip() {
+        this.tooltip = tip({
+            target: this.container,
+            content: this.props.option.tooltip,
+            options: { position: "bottom" }, // Todo this option should be configurable using this.props.option.tooltipOptions
+            className: this.props.option.className
+        });
+    }
+
     onClick(event) {
         if(this.props.onClick) {
             this.props.onClick({
@@ -46,7 +63,7 @@ export class DropdownItem extends Component {
         let content = this.props.template ? this.props.template(this.props.option) : this.props.label;
 
         return (
-            <li className={className} onClick={this.onClick} aria-label={this.props.label} key={this.props.label} role="option" aria-selected={this.props.selected}>
+            <li ref={el => (this.container = el)} className={className} onClick={this.onClick} aria-label={this.props.label} key={this.props.label} role="option" aria-selected={this.props.selected}>
                 {content}
             </li>
         );
